@@ -1,5 +1,6 @@
 package mortgage_calculator;
 
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class MortgageCalculator {
@@ -15,6 +16,8 @@ public class MortgageCalculator {
         years = 0;
         monthlyAmount = 0;
         getDetails();
+        calculateMonthlyAmount();
+        displayMonthlyAmount();
     }
 
     private void getDetails() {
@@ -22,11 +25,11 @@ public class MortgageCalculator {
         System.out.println("------------------------------");
         System.out.println("DB Mortgage Calculator");
         System.out.println("------------------------------");
-        System.out.println("\nEnter loan amount: ");
+        System.out.print("\nEnter loan amount: ");
         loanAmount = Double.parseDouble(input.nextLine());
-        System.out.println("\nEnter annual interest rate [%]: ");
+        System.out.print("Enter annual interest rate [%]: ");
         annualInterestRate = Double.parseDouble(input.nextLine());
-        System.out.println("\nEnter loan period [years]: ");
+        System.out.print("Enter loan period [years]: ");
         years = Integer.parseInt(input.nextLine());
     }
 
@@ -38,7 +41,10 @@ public class MortgageCalculator {
     }
 
     private void displayMonthlyAmount() {
-        System.out.println("\nMortgage monthly payments: " + monthlyAmount);
+        NumberFormat monthlyAmountDollars = NumberFormat.getCurrencyInstance();
+        String amountToDisplay =
+                monthlyAmountDollars.format(monthlyAmount);
+        System.out.println("\nMortgage monthly payments: " + amountToDisplay);
     }
 
     public static void main(String[] args) {
