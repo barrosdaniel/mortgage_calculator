@@ -4,9 +4,11 @@ import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class MortgageCalculator {
-    private double loanAmount;
-    private double annualInterestRate;
-    private int years;
+    private final byte MONTHS_IN_YEAR = 12;
+    private final byte PERCENT = 100;
+    private float loanAmount;
+    private float annualInterestRate;
+    private byte years;
     private double monthlyAmount;
 
 
@@ -26,16 +28,16 @@ public class MortgageCalculator {
         System.out.println("DB Mortgage Calculator");
         System.out.println("------------------------------");
         System.out.print("\nEnter loan amount: ");
-        loanAmount = Double.parseDouble(input.nextLine());
+        loanAmount = Float.parseFloat(input.nextLine());
         System.out.print("Enter annual interest rate [%]: ");
-        annualInterestRate = Double.parseDouble(input.nextLine());
+        annualInterestRate = Float.parseFloat(input.nextLine());
         System.out.print("Enter loan period [years]: ");
-        years = Integer.parseInt(input.nextLine());
+        years = Byte.parseByte(input.nextLine());
     }
 
     private void calculateMonthlyAmount() {
-        double monthlyInterestRate = annualInterestRate / 12 / 100;
-        int numberOfMonths = years * 12;
+        double monthlyInterestRate = annualInterestRate / MONTHS_IN_YEAR / PERCENT;
+        int numberOfMonths = years * MONTHS_IN_YEAR;
         monthlyAmount =
                 loanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfMonths)) / (Math.pow(1 + monthlyInterestRate, numberOfMonths) - 1);
     }
