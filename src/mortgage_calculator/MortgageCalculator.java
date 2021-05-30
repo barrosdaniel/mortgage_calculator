@@ -33,8 +33,8 @@ public class MortgageCalculator {
     private void calculateMonthlyAmount() {
         double monthlyInterestRate = annualInterestRate / 12 / 100;
         int numberOfMonths = years * 12;
-        monthlyAmount = loanAmount (monthlyInterestRate * Math.pow(, ))
-
+        monthlyAmount =
+                loanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfMonths)) / (Math.pow(1 + monthlyInterestRate, numberOfMonths) - 1);
     }
 
     private void displayMonthlyAmount() {
